@@ -22,7 +22,9 @@ class TestInvoiceReportDueList(common.TransactionCase):
         cls.payment_term_normal = cls.env["account.payment.term"].create(
             {
                 "name": "One Time Payment Term",
-                "line_ids": [(0, 0, {"value": "balance", "days": 30})],
+                "line_ids": [
+                    (0, 0, {"value": "percent", "value_amount": 100.0, "nb_days": 30})
+                ],
             }
         )
         cls.payment_term_multi = cls.env["account.payment.term"].create(
@@ -35,10 +37,10 @@ class TestInvoiceReportDueList(common.TransactionCase):
                         {
                             "value": "percent",
                             "value_amount": 25.0,
-                            "days": 30,
+                            "nb_days": 30,
                         },
                     ),
-                    (0, 0, {"value": "balance", "days": 60}),
+                    (0, 0, {"value": "percent", "value_amount": 75.0, "nb_days": 60}),
                 ],
             }
         )
